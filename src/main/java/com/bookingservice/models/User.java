@@ -1,7 +1,10 @@
 package com.bookingservice.models;
 
+import java.util.Objects;
+
 public class User {
-    private int id;
+    private static int counter = 0;
+    private final int id;
     private String login;
     private String password;
     private String firstName;
@@ -13,8 +16,8 @@ public class User {
     private boolean status;
     private String country;
 
-    public User(int id, String login, String password, String firstName, String lastName, int age, String email, String phone, String gender, boolean status, String country) {
-        this.id = id;
+    public User(String login, String password, String firstName, String lastName, int age, String email, String phone, String gender, boolean status, String country) {
+        this.id = ++counter;
         this.login = login;
         this.password = password;
         this.firstName = firstName;
@@ -111,4 +114,36 @@ public class User {
         this.country = country;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                id +
+                ", " + login +
+                ", " + password +
+                ", " + firstName +
+                ", " + lastName +
+                ", " + age +
+                ", " + email +
+                ", " + phone +
+                ", " + gender +
+                ", " + status +
+                ", " + country +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(phone, user.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password, firstName, lastName, age, email, phone, gender, status, country);
+    }
 }

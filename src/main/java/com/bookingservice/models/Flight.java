@@ -3,6 +3,7 @@ package com.bookingservice.models;
 import java.time.LocalDate;
 
 public class Flight {
+    private static int counter = 0;
     private final int id;
     private String idFlight;
     private String name;
@@ -14,9 +15,9 @@ public class Flight {
     private double cost;
     private boolean status;
 
-    public Flight(int id, String idFlight, String name, LocalDate dateTimeFrom, LocalDate dateTimeTo, String cityFrome, String cityTo, int seatsAmount, double cost, boolean status) {
-        this.id = id;
-        this.idFlight = idFlight;
+    public Flight(String name, LocalDate dateTimeFrom, LocalDate dateTimeTo, String cityFrome, String cityTo, int seatsAmount, double cost, boolean status) {
+        this.id = ++counter;
+        this.idFlight = id + "-" + this.hashCode() + "F";
         this.name = name;
         this.dateTimeFrom = dateTimeFrom;
         this.dateTimeTo = dateTimeTo;
