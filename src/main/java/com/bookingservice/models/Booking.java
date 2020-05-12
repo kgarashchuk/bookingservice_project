@@ -1,5 +1,7 @@
 package com.bookingservice.models;
 
+import java.util.Objects;
+
 public class Booking {
     private static int counter = 0;
     private final int id;
@@ -74,5 +76,19 @@ public class Booking {
                 ", " + cost +
                 ", " + status +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return id == booking.id &&
+                Objects.equals(idBooking, booking.idBooking);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, idBooking, user, flight, seats, cost, status);
     }
 }
